@@ -9,8 +9,13 @@ class Player(object):
         self.msg = {'do': 'skip'}
 
     def update(self):
-        pass
-    
+        self.move()
+
+        if (self.getDistRot(5, 5) <= 0):
+            self.turnRight()
+
+        if (self.getDistRot(-5, -5) <= 0):
+            self.turnRight()
 
     ############################
     def skip(self):
@@ -34,11 +39,17 @@ class Player(object):
     def getY(self):
         return self.data['pos']['y']
 
+    def getDistRot(self, x, y):
+        if self.data['rot']['x']:
+            return self.getDistX(x)
+        if self.data['rot']['y']:
+            return self.getDistY(y)
+
     def getDistX(self, x):
-        return abs(self.getX - x) - 1
+        return abs(self.getX() - x) - 1
 
     def getDistY(self, y):
-        return abs(self.getY - y) - 1
+        return abs(self.getY() - y) - 1
     ############################
 
 
