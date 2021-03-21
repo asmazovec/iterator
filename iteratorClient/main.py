@@ -1,4 +1,4 @@
-from classes import Player
+from classes import *
 from aiohttp import *
 import aiohttp
 import asyncio
@@ -8,7 +8,7 @@ import json
 player = Player("name")
 async def main():
     async with aiohttp.ClientSession() as session:
-        async with session.ws_connect('ws://mazovec.ru:8000/api') as ws:
+        async with session.ws_connect('ws://mazovec.ru/api') as ws:
 
             ####### Регистрация новой комнаты #######
             await player.createRoom(ws, "0000")
